@@ -15,10 +15,20 @@ import java.util.ArrayList;
  * code should remember to add themselves as a modifier.
  *
  * @author dancye, 2018
+ * @author Deep Shah, 21 July 2019
  */
-public class Card implements SuitValue {
-    //default modifier for child classes
+public class Card {
 
+    public enum Suit {
+        HEARTS, CLUBS, DIAMONDS, SPADES;
+    };
+
+    public enum Value {
+        ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING;
+
+    };
+
+    //default modifier for child classes
     private Value value;
     private Suit suit;
     private int deckSize = 52;
@@ -40,7 +50,8 @@ public class Card implements SuitValue {
             }
         }
     }
-     */ public boolean equals(Value value) {
+     */
+    public boolean equals(Value value) {
         if (this.getValue().equals(value)) {
             return true;
         } else {

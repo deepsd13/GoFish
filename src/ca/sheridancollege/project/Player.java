@@ -11,7 +11,7 @@ package ca.sheridancollege.project;
  *
  * @author dancye, 2018
  */
-public class Player implements SuitValue{
+public class Player{
 
     private String playerID; //the unique ID for this player
 

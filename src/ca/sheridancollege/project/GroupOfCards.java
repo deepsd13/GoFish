@@ -20,7 +20,7 @@ public class GroupOfCards extends Card {
 
     //The group of cards, stored in an ArrayList
     private ArrayList<Card> cards = new ArrayList<>();
-    private static ArrayList<Card> deck = new ArrayList<Card>();
+    private ArrayList<Card> deck = new ArrayList<Card>();
     private int size;//the size of the grouping
 
     public GroupOfCards(int givenSize, Suit suit, Value value) {
@@ -28,8 +28,7 @@ public class GroupOfCards extends Card {
         size = givenSize;
     }
 
-  
-    public  ArrayList<Card> generateDeck() {
+    public ArrayList<Card> generateDeck() {
 
         for (Suit s : Suit.values()) {
             for (Value v : Value.values()) {
@@ -43,15 +42,65 @@ public class GroupOfCards extends Card {
 
     public ArrayList<Card> distributeCards() {
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
 
             Random rn = new Random();
-            int rand = rn.nextInt(deck.size()-1) + 1;
+            int rand = rn.nextInt(deck.size() - 1) + 1;
             cards.add((deck.get(rand)));
+            size++;
             deck.remove(rand);
 
         }
         return cards;
+    }
+
+    public void fish(){
+           Random rn = new Random();
+           int rand= rn.nextInt(deck.size()-1)+1;
+           cards.add(deck.get(rand));
+           size++;
+           
+           deck.remove(rand);
+      
+    }
+
+    public void askFor(GroupOfCards cards, Value value) {
+        for (int i = 0; i < cards.getSize(); i++) {
+            if (cards.get(i).equals(value)) {
+                if (this.get(i).equals(value)) {
+                    this.add(cards.get(i));
+                    cards.remove(cards);
+                } else {
+                    System.out.println("GO Fish!");
+                    cards.fish();
+                }
+            } else {
+                System.out.println("You don't have the requested card in your"
+                        + " hand.Please ask card that you have in your hand");
+            }
+
+        }
+
+    }
+
+    public Card get(int Index) {
+
+        if (Index <= cards.size()) {
+            return cards.get(Index);
+        } else {
+            return null;
+        }
+    }
+
+    public void add(Card card) {
+
+        cards.add(card);
+    }
+
+    public void remove(Card card) {
+
+        cards.remove(card);
+
     }
 
     public ArrayList<Card> getDeck() {
