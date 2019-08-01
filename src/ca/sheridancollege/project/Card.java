@@ -51,14 +51,7 @@ public class Card {
         }
     }
      */
-    public boolean equals(Value value) {
-        if (this.getValue().equals(value)) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
+   
 
     public Value getValue() {
         // TODO - implement Card.getValue
@@ -85,9 +78,10 @@ public class Card {
         this.suit = suit;
     }
 
+    @Override
     public String toString() {
 
-        return getValue() + " of " + getSuit() + ", ";
+        return getValue() + " Of " + getSuit();
 
     }
 

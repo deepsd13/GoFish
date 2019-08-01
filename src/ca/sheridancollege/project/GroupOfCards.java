@@ -16,22 +16,33 @@ import java.util.Random;
  *
  * @author dancye
  */
-public class GroupOfCards extends Card {
+public class GroupOfCards {
 
     //The group of cards, stored in an ArrayList
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Card> deck = new ArrayList<Card>();
     private int size;//the size of the grouping
 
-    public GroupOfCards(int givenSize, Suit suit, Value value) {
-        super(suit, value);
+    public GroupOfCards(int givenSize) {
         size = givenSize;
+    }
+
+    public GroupOfCards() {
+    }
+
+    public boolean equals(Card card) {
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i).equals(card.getValue())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<Card> generateDeck() {
 
-        for (Suit s : Suit.values()) {
-            for (Value v : Value.values()) {
+        for (Card.Suit s : Card.Suit.values()) {
+            for (Card.Value v : Card.Value.values()) {
 
                 Card c = new Card(s, v);
                 deck.add(c);
@@ -40,47 +51,31 @@ public class GroupOfCards extends Card {
         return deck;
     }
 
-    public ArrayList<Card> distributeCards() {
+    public GroupOfCards distributeCards(Player player) {
 
         for (int i = 0; i < 10; i++) {
-
             Random rn = new Random();
             int rand = rn.nextInt(deck.size() - 1) + 1;
-            cards.add((deck.get(rand)));
-            size++;
+            player.getHand().add((deck.get(rand)));
+            player.getHand().setSize(player.getHand().getSize()+1);
             deck.remove(rand);
-
         }
-        return cards;
+        return player.getHand();
     }
 
-    public void fish(){
-           Random rn = new Random();
-           int rand= rn.nextInt(deck.size()-1)+1;
-           cards.add(deck.get(rand));
-           size++;
-           
-           deck.remove(rand);
-      
-    }
-
-    public void askFor(GroupOfCards cards, Value value) {
-        for (int i = 0; i < cards.getSize(); i++) {
-            if (cards.get(i).equals(value)) {
-                if (this.get(i).equals(value)) {
-                    this.add(cards.get(i));
-                    cards.remove(cards);
-                } else {
-                    System.out.println("GO Fish!");
-                    cards.fish();
-                }
-            } else {
-                System.out.println("You don't have the requested card in your"
-                        + " hand.Please ask card that you have in your hand");
-            }
-
+    public ArrayList<Card> fish(Player player) {
+        if(deck.size()>0){
+        Random rn = new Random();
+        int rand = rn.nextInt(deck.size() - 1) + 1;
+        player.getHand().add(deck.get(rand));
+        player.getHand().setSize(player.getHand().getSize() + 1);
+        deck.remove(rand);
+        
+        }else{
+            System.out.println("Oh! There's no card left in the remaining pool!"
+                    + " This is last round!\n Get ready to see who wins!!");
         }
-
+        return deck;
     }
 
     public Card get(int Index) {
@@ -90,6 +85,14 @@ public class GroupOfCards extends Card {
         } else {
             return null;
         }
+    }
+
+    public boolean contains(Card c) {
+        if (cards.contains(c)) {
+            return true;
+        }
+        return false;
+
     }
 
     public void add(Card card) {
@@ -105,15 +108,6 @@ public class GroupOfCards extends Card {
 
     public ArrayList<Card> getDeck() {
         return deck;
-    }
-
-    /**
-     * A method that will get the group of cards as an ArrayList
-     *
-     * @return the group of cards.
-     */
-    public ArrayList<Card> showCards() {
-        return cards;
     }
 
     public void shuffle() {
@@ -134,10 +128,22 @@ public class GroupOfCards extends Card {
         size = givenSize;
     }
 
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void setDeck(ArrayList<Card> deck) {
+        this.deck = deck;
+    }
+
     @Override
     public String toString() {
 
         return "The remaining cards:" + deck;
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
     }
 
 }//end class
