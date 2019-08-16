@@ -48,8 +48,8 @@ public class Card {
     }
 
     /**
-     *Getter for value data field
-     * 
+     * Getter for value data field
+     *
      * @return Value
      */
     public Value getValue() {
@@ -57,8 +57,8 @@ public class Card {
     }
 
     /**
-     *setter for value
-     * 
+     * setter for value
+     *
      * @param value
      */
     public void setValue(Value value) {
@@ -66,8 +66,8 @@ public class Card {
     }
 
     /**
-     * getter for suit 
-     * 
+     * getter for suit
+     *
      * @return suit
      */
     public Suit getSuit() {
@@ -75,8 +75,8 @@ public class Card {
     }
 
     /**
-     *setter for suit
-     * 
+     * setter for suit
+     *
      * @param suit
      */
     public void setSuit(Suit suit) {
@@ -85,8 +85,8 @@ public class Card {
 
     /**
      * A formatted string of the card class
-     * 
-     * @return String 
+     *
+     * @return String
      */
     @Override
     public String toString() {

@@ -1,4 +1,3 @@
-
 package ca.sheridancollege.project;
 
 import java.util.Scanner;
@@ -10,19 +9,20 @@ import java.util.Scanner;
  */
 public class Game {
 
-    private  String gameName;//the title of the game
+    private String gameName;//the title of the game
 
     /**
      * One parameter constructor
-     * @param givenName  name of the game
+     *
+     * @param givenName name of the game
      */
     public Game(String givenName) {
         gameName = givenName;
     }
 
     /**
-     *getter for game name
-     * 
+     * getter for game name
+     *
      * @return the gameName
      */
     public String getGameName() {
@@ -31,21 +31,19 @@ public class Game {
 
     /**
      * setter for gameName
-     * 
-     * @param gameName 
+     *
+     * @param gameName
      */
     public void setGameName(String gameName) {
         this.gameName = gameName;
     }
 
- 
-
     /**
-     *The main play method which class the haveturn method of both human and 
+     * The main play method which class the haveturn method of both human and
      * comp player.
      *
-     * @param player1  Human Player
-     * @param player2  computer player
+     * @param player1 Human Player
+     * @param player2 computer player
      */
     public void play(Player player1, Player player2, GroupOfCards gOfc) {
         OUTER:
@@ -56,7 +54,7 @@ public class Game {
             //exit.
             Scanner scan = new Scanner(System.in);
             boolean correct = true;
-            
+
             INNER:
             while (correct) {
                 System.out.println("Enter 0 to Exit and declare winner or 1 to continue.");
@@ -78,21 +76,20 @@ public class Game {
     }
 
     /**
-     * When the game is over,  this method  declares and display a winning
-     * player.
+     * When the game is over, this method declares and display a winning player.
      */
     public void declareWinner(Player player1, Player player2) {
 
         if (player1.getScore() > player2.getScore()) {
-            System.out.println("GAME OVER!!\nYour score:" + player1.getScore()
+            System.out.println("\nGAME OVER!!\nYour score:" + player1.getScore()
                     + "\nComputer's Score:" + player2.getScore());
             System.out.println("CONGRATS!!! YOU WON! YAYYYY :) ");
         } else if (player1.getScore() == player2.getScore()) {
-            System.out.println("GAME OVER!!\nYour score:" + player1.getScore()
+            System.out.println("\nGAME OVER!!\nYour score:" + player1.getScore()
                     + "\nComputer's Score:" + player2.getScore());
             System.out.println("WOAH!! Its a tie! Better luck next time!;)");
         } else {
-            System.out.println("GAME OVER!!\nYour score:" + player1.getScore()
+            System.out.println("\nGAME OVER!!\nYour score:" + player1.getScore()
                     + "\nComputer's Score:" + player2.getScore());
             System.out.println("You lose! Computer WON! :(");
         }

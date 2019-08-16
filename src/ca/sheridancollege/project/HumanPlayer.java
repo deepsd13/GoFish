@@ -3,13 +3,12 @@ package ca.sheridancollege.project;
 import java.util.Scanner;
 
 /**
- * Subclass of Player class which overrides the haveturn method with its own 
+ * Subclass of Player class which overrides the haveturn method with its own
  * logic
- * 
+ *
  * @author Deep Shah August 15,2019
  */
 public class HumanPlayer extends Player {
-
 
     /**
      * One parameter constructor
