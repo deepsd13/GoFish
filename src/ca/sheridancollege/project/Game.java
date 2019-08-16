@@ -1,30 +1,28 @@
-/**
- * SYST 17796 Project Winter 2019 Base code.
- * Students can modify and extend to implement their game.
- * Add your name as a modifier and the date!
- */
+
 package ca.sheridancollege.project;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
- * The class that models your game. You should create a more specific child of
- * this class and instantiate the methods given.
+ * The class that models the game.
  *
- * @author dancye, 2018
+ * @author Deep Shah August 15 2019
  */
 public class Game {
 
-    private final String gameName;//the title of the game
-    private ArrayList<Player> players;// the players of the game
+    private  String gameName;//the title of the game
 
+    /**
+     * One parameter constructor
+     * @param givenName  name of the game
+     */
     public Game(String givenName) {
         gameName = givenName;
-        players = new ArrayList();
     }
 
     /**
-     *
+     *getter for game name
+     * 
      * @return the gameName
      */
     public String getGameName() {
@@ -32,40 +30,55 @@ public class Game {
     }
 
     /**
-     * @return the players of this game
+     * setter for gameName
+     * 
+     * @param gameName 
      */
-    public ArrayList<Player> getPlayers() {
-        return players;
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 
-    /**
-     * @param players the players of this game
-     */
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
-    }
+ 
 
     /**
-     * Play the game. This might be one method or many method calls depending on
-     * your game.
+     *The main play method which class the haveturn method of both human and 
+     * comp player.
      *
-     * @param player1
-     * @param player2
+     * @param player1  Human Player
+     * @param player2  computer player
      */
     public void play(Player player1, Player player2, GroupOfCards gOfc) {
-
+        OUTER:
         while (gOfc.getDeck().size() > 1) {
 
             player1.haveTurn();
+            //After the player turn has ended the program asks if the user wants to
+            //exit.
+            Scanner scan = new Scanner(System.in);
+            boolean correct = true;
+            
+            INNER:
+            while (correct) {
+                System.out.println("Enter 0 to Exit and declare winner or 1 to continue.");
+                int choose = scan.nextInt();
+                switch (choose) {
+                    case 1:
+                        break INNER; // breaking from the inner loop
+                    case 0:
+                        break OUTER; // breaking from the outer loop
+                    default:
+                        System.out.println("Please select an valid option!\n");
+                }
+            }
             player2.haveTurn();
-
         }
+
         declareWinner(player1, player2);
 
     }
 
     /**
-     * When the game is over, use this method to declare and display a winning
+     * When the game is over,  this method  declares and display a winning
      * player.
      */
     public void declareWinner(Player player1, Player player2) {
